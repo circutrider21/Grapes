@@ -18,8 +18,13 @@ typedef struct {
   char* raw;
 } Token;
 
-// Get The Scanner Ready For Parsing
-void initScanner(char* filename);
+// The Scanner Class
 
-// Get the next token in the program
-Token getToken();
+class Scanner {
+private:
+  ifstream f;
+  int pos;
+public:
+  void initScanner(char* filename);
+  Token getToken();
+};
