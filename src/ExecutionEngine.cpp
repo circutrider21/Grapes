@@ -1,12 +1,33 @@
 // Copyright 2020 PFS, All Rights Reserved
 
-#include "ExecutionEngine.h"
+#include "../include/ExecutionEngine.h"
+#include <stack>
+
+Program r;
+std::stack<Value> s;
+int counter;
+
+ExecutionEngine::ExecutionEngine(Program p) {
+  r = p;
+  counter = 0;
+}
+
+static Value getCon() {
+  return r.Consts[counter++];
+}
 
 void ExecutionEngine::run() {
-  for(int i = 0; i < p.h.isize; i++) {
-    switch(p.i) {
+  for(int i = 0; i < r.inSize; i++) {
+    switch(r.instr[i]) {
       case OP_PRINT:
-      printValue(pop);
+      printVal(s.top());
+      s.pop();
+      break;
+      case OP_LOAD:
+      s.emplace(getCon());
+      break;
+      case OP_RETURN:
+      exit(0);
       break;
     }
   }

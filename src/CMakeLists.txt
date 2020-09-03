@@ -1,0 +1,1 @@
+add_library(Core STATIC Common.cpp ExecutionEngine.cpp)
