@@ -1,6 +1,15 @@
-#include "include/Compiler.h"
+#include "include/Scanner.h"
 using namespace std;
 
 int main() {
-  Compiler c("../main.cpp");
+  Scanner s("Test.gs");
+  Token t;
+  for (;;) {
+    t = s.scanToken();
+    if(t.type == TOKEN_EOF) {
+      exit(0);
+    }
+    cout << t.start << endl;
+  }
+  return 0;
 }

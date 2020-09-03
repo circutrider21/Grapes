@@ -1,1 +1,1 @@
-add_library(Core STATIC Common.cpp Compiler.cpp)
+add_library(Core STATIC Common.cpp Scanner.cpp)
