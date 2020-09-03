@@ -8,15 +8,15 @@ Grapes is a Dynamicaly Typed Programng Language that is extremely fast and very 
 
 This Project Uses CMake as the build system.
 
-To build this project, make a folder and go into it
+To build this project, make a folder to hold the compiled files and open it.
 
 Then run this command:
 
 ````bash
 
-$ cmake -G ninja ..
+$ cmake -G ninja .. && ninja
 
 ````
 
-Afterwa
+Afterwards run ./Grapes on linux and Grapes on Windows to run the compiler
 
