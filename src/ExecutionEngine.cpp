@@ -4,7 +4,7 @@
 #include <stack>
 
 Program r;
-std::stack<Value> s;
+std::stack<Value> vst;
 int counter;
 
 ExecutionEngine::ExecutionEngine(Program p) {
@@ -20,11 +20,11 @@ void ExecutionEngine::run() {
   for(int i = 0; i < r.inSize; i++) {
     switch(r.instr[i]) {
       case OP_PRINT:
-      printVal(s.top());
-      s.pop();
+      printVal(vst.top());
+      vst.pop();
       break;
       case OP_LOAD:
-      s.emplace(getCon());
+      vst.emplace(getCon());
       break;
       case OP_RETURN:
       exit(0);

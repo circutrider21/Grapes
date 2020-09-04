@@ -1,6 +1,14 @@
 #include "include/Compiler.h"
+#include "include/ExecutionEngine.h"
 using namespace std;
 
 int main() {
-  Compiler c("../main.cpp");
+  Program pt; 
+  Compiler c("../Test.gs");
+  c.build();
+  pt = c.dump();
+
+  ExecutionEngine e(pt);
+  e.run();
+  return 0;
 }

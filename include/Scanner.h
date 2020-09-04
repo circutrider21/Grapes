@@ -40,7 +40,7 @@ typedef struct {
 
 class Scanner {
   public:
-  Scanner(std::string filename);
+  void setup(const char* filename);
   Token scanToken();
 };
 
