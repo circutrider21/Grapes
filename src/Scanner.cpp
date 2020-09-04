@@ -82,7 +82,11 @@ static char peek() {
 
 static char peekNext() {
   if (isAtEnd()) return '\0';
+<<<<<<< HEAD
   return nkg.current[1];
+=======
+  return scanner.current[1];
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
 }
 
 static void skipWhitespace() {
@@ -114,9 +118,15 @@ static void skipWhitespace() {
   }
 }
 
+<<<<<<< HEAD
 static Token stri() {
   while (peek() != '"' && !isAtEnd()) {
     if (peek() == '\n') nkg.line++;
+=======
+static Token string() {
+  while (peek() != '"' && !isAtEnd()) {
+    if (peek() == '\n') scanner.line++;
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
     advance();
   }
 
@@ -151,10 +161,23 @@ static bool isAlpha(char c) {
           c == '_';
 }
 
+<<<<<<< HEAD
 static TokenType checkKeyword(int start, int length,
     const char* rest, TokenType type) {
   if (nkg.current - nkg.start == start + length &&
       memcmp(nkg.start + start, rest, length) == 0) {
+=======
+static Token identifier() {
+  while (isAlpha(peek()) || isDigit(peek())) advance();
+
+  return makeToken(identifierType());
+}
+
+static TokenType checkKeyword(int start, int length,
+    const char* rest, TokenType type) {
+  if (scanner.current - scanner.start == start + length &&
+      memcmp(scanner.start + start, rest, length) == 0) {
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
     return type;
   }
 
@@ -163,13 +186,22 @@ static TokenType checkKeyword(int start, int length,
 
 static TokenType identifierType()
 {
+<<<<<<< HEAD
   switch (nkg.start[0]) {
+=======
+  switch (scanner.start[0]) {
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
     case 'a': return checkKeyword(1, 2, "nd", TOKEN_AND);
     case 'c': return checkKeyword(1, 4, "lass", TOKEN_CLASS);
     case 'e': return checkKeyword(1, 3, "lse", TOKEN_ELSE);
     case 'f':
+<<<<<<< HEAD
       if (nkg.current - nkg.start > 1) {
         switch (nkg.start[1]) {
+=======
+      if (scanner.current - scanner.start > 1) {
+        switch (scanner.start[1]) {
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
           case 'a': return checkKeyword(2, 3, "lse", TOKEN_FALSE);
           case 'o': return checkKeyword(2, 1, "r", TOKEN_FOR);
           case 'u': return checkKeyword(2, 1, "n", TOKEN_FUN);
@@ -183,8 +215,13 @@ static TokenType identifierType()
     case 'r': return checkKeyword(1, 5, "eturn", TOKEN_RETURN);
     case 's': return checkKeyword(1, 4, "uper", TOKEN_SUPER);
     case 't':
+<<<<<<< HEAD
       if (nkg.current - nkg.start > 1) {
         switch (nkg.start[1]) {
+=======
+      if (scanner.current - scanner.start > 1) {
+        switch (scanner.start[1]) {
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
           case 'h': return checkKeyword(2, 2, "is", TOKEN_THIS);
           case 'r': return checkKeyword(2, 2, "ue", TOKEN_TRUE);
         }
@@ -197,12 +234,15 @@ static TokenType identifierType()
   return TOKEN_IDENTIFIER;
 }
 
+<<<<<<< HEAD
 static Token identifier() {
   while (isAlpha(peek()) || isDigit(peek())) advance();
 
   return makeToken(identifierType());
 }
 
+=======
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
 Token Scanner::scanToken() {
   skipWhitespace();
 
@@ -214,8 +254,11 @@ Token Scanner::scanToken() {
 
   if (isAlpha(c)) return identifier();
   if (isDigit(c)) return number();
+<<<<<<< HEAD
   //named function stri because string is reserved
   if (c == '"') return stri();
+=======
+>>>>>>> cf9083e6d6959b7c53418be31fd4fefcd4713077
 
   switch (c) {
     case '(': return makeToken(TOKEN_LEFT_PAREN);
@@ -238,6 +281,7 @@ Token Scanner::scanToken() {
     case '>':
       return makeToken(match('=') ?
                        TOKEN_GREATER_EQUAL : TOKEN_GREATER);
+    case '"': return string();
   }
 
   return errorToken("Unexpected character.");
