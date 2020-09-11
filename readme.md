@@ -4,6 +4,19 @@
 
 Grapes is a Dynamicaly Typed Programng Language that is extremely fast and very reliable.
 
+Here is a sample of grapes:
+
+````
+
+fun sayHello() {
+  return "Hello";
+}
+
+var message = sayHello();
+print message;
+
+````
+
 # How To Build ?
 
 This Project Uses CMake as the build system.
