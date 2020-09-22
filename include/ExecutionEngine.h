@@ -4,7 +4,6 @@
 #include "Common.h"
 #include "Defs.h"
 #include <stack>
-using namespace std;
 
 class ExecutionEngine {
   public:

@@ -9,11 +9,17 @@ typedef enum {
 } ValType;
 
 typedef struct {
+  void *ptr;
+  bool ism;
+} Ident;
+
+typedef struct {
   ValType v;
   union {
     int ival;
     bool bval;
     char* cval;
+    Ident i;
   };
 } Value;
 

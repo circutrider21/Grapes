@@ -1,13 +1,14 @@
-#include "include/Compiler.h"
-#include "include/ExecutionEngine.h"
+#include "include/Scanner.h"
+#include <new>
+#include <iostream>
+using grapes::lexer::Scanner;
 using namespace std;
 
 int main() {
-  Program pt; 
-  Compiler c("../Test.gs");
-  c.build();
-  pt = c.dump();
-
-  ExecutionEngine e(pt);
-  e.run();
+  Scanner* s = new Scanner("../Test.gs");
+  grapes::lexer::Token t = s->scanToken();
+  while(t.type != grapes::lexer::TOKEN_EOF) {
+    t = s->scanToken();
+  }
+  delete s;
 }

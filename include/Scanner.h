@@ -3,7 +3,7 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 
-#include <iostream>
+namespace grapes::lexer {
 
 typedef enum {
   // Single-character tokens.
@@ -32,7 +32,7 @@ typedef enum {
 } TokenType;
 
 typedef struct {
-  TokenType type;
+  int type;
   const char* start;
   int length;
   int line;
@@ -40,8 +40,10 @@ typedef struct {
 
 class Scanner {
   public:
-  void setup(const char* filename);
+  Scanner(const char* filename);
+  ~Scanner();
   Token scanToken();
 };
+}
 
 #endif

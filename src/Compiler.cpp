@@ -27,11 +27,17 @@ Value stov(const char* string, int length) {
   for(int i = 0; i < length; i++) {
     data[i] = string[i];
   }
-  printf("%s\n", string);
   Value to_ret;
   to_ret.v = V_STRING;
   to_ret.cval = data;
   return to_ret;
+}
+
+Value number(const char* string) {
+  Value trt;
+  trt.v = V_INT;
+  trt.ival = atoi(string);
+  return trt;
 }
 
 Value evaluate() {
@@ -41,6 +47,9 @@ Value evaluate() {
     switch(to_eval.type) {
       case TOKEN_STRING:
       return stov(to_eval.start, to_eval.length);
+      break;
+      case TOKEN_NUMBER:
+      return number(to_eval.start);
       break;
     }
     to_eval = s.scanToken();

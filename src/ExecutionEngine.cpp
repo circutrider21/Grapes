@@ -1,7 +1,6 @@
 // Copyright 2020 PFS, All Rights Reserved
 
 #include "../include/ExecutionEngine.h"
-#include <stack>
 
 Program r;
 std::stack<Value> vst;
